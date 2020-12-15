@@ -7,4 +7,4 @@ class UserIn(BaseModel):
 
 class UserOut(BaseModel):
     username: str
-    tipo_cuenta: str
+    tipo_cuenta_user: str
