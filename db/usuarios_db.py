@@ -4,22 +4,22 @@ from pydantic import BaseModel
 class UserInDB(BaseModel):
     username: str
     password: str
-    tipo_cuenta: str
+    tipo_cuenta_user: str
 
 database_users = Dict[str, UserInDB]
 database_users = {
 
     "admin": UserInDB(**{"username":"admin", 
                         "password":"root",
-                        "tipo_cuenta":"administrador"}),
+                        "tipo_cuenta_user":"administrador"}),
 
     "trabajador1": UserInDB(**{"username":"Trabajador1",
                                 "password":"hotel1",
-                                "tipo_cuenta":"trabajador"}),
+                                "tipo_cuenta_user":"trabajador"}),
 
     "cliente1": UserInDB(**{"username":"Cliente1",
                             "password":"reserva1",
-                            "tipo_cuenta":"cliente"}),
+                            "tipo_cuenta_user":"cliente"}),
 }
 
 def get_user(username: str):
