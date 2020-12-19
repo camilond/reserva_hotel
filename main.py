@@ -1,6 +1,8 @@
 from db.usuarios_db import UserInDB
 from db.usuarios_db import update_user, get_user 
 from models.usuarios_models import UserIn, UserOut
+from db.reservas_db import ReservaInDB, get_reserva
+from models.reservas_models import ReservaIn, ReservaOut
 from fastapi import FastAPI
 from fastapi import HTTPException
 from typing import Dict
@@ -39,4 +41,14 @@ async def get_cuenta(username: str):
         raise HTTPException(status_code=404, detail="El usuario no existe")
     user_out = UserOut(**user_in_db.dict())
     return user_out
+
+@app.get("/user/reserva/{username}")
+async def get_reserva_cliente(username: str):
+    reserva_in_db = get_reserva(username)
+    
+    if reserva_in_db == None:
+        raise HTTPException(status_code=404, detail="Este usuario no ha hecho una reserva")
+    reserva_mostrar = ReservaOut(**reserva_in_db.dict())
+    return reserva_mostrar
+
 
